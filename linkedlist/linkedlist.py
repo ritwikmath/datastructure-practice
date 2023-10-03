@@ -1,14 +1,15 @@
 from __future__ import annotations
+from typing import Optional
 from dataclasses import dataclass
 
 @dataclass
 class Node:
     value: str | int
-    next: None | Node = None
+    next: Optional[Node] = None
 
 class LinkedList:
     def __init__(self) -> None:
-        self.head: None | Node = None
+        self.head: Optional[Node] = None
     
     def addAtBeginning(self, data) -> Node:
         if (self.head is None):
@@ -45,4 +46,5 @@ l.addAtBeginning(3)
 l.addAtBeginning(2)
 l.addAtBeginning(1)
 l.addAtLast(5)
-l.printList()
+if __name__ == '__main__':
+    l.printList()

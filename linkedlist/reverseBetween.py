@@ -9,26 +9,30 @@ class Solution:
             return
 
         count: int = 1
-        left_pointer: Optional[Node] = None
-        new_head: Optional[Node] = None
+        current: Node = head
         previous: Optional[Node] = None
-        while(head is not None):
-            reverse_node_end: Optional[Node] = None 
+        reverse_node_end: Optional[Node] = None
+        while(current is not None):
+            next_node = current.next
+            if left != 1 and count == left - 1:
+                left_pointer = current
             if count >= left and count <= right:
                 if count == left:
-                    reverse_node_end = head
-                    continue
-                next_node = head.next
-                head.next = previous
-                previous = head
+                    reverse_node_end = current
                 if count is right:
-                    reverse_node_end.next = next_node
-            head = next_node
+                    if left_pointer:
+                        left_pointer.next = current
+                    reverse_node_end.next = current.next
+                current.next = previous
+                previous = current
+            current = next_node
             count += 1
             
-        
         return head
 
 if __name__ == '__main__':
-    linkedllist.head = Solution().reverseList(linkedllist.head)
+    linkedllist.addAtBeginning(0)
+    linkedllist.addAtLast(6)
+    linkedllist.addAtLast(7)
+    linkedllist.head = Solution().reverseBetween(linkedllist.head, 2, 7)
     linkedllist.printList()

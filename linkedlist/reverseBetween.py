@@ -12,6 +12,7 @@ class Solution:
         current: Node = head
         previous: Optional[Node] = None
         reverse_node_end: Optional[Node] = None
+        left_pointer: Optional[Node] = None
         while(current is not None):
             next_node = current.next
             if left != 1 and count == left - 1:
@@ -23,6 +24,8 @@ class Solution:
                     if left_pointer:
                         left_pointer.next = current
                     reverse_node_end.next = current.next
+                    if left == 1:
+                        head = current
                 current.next = previous
                 previous = current
             current = next_node
@@ -34,5 +37,5 @@ if __name__ == '__main__':
     linkedllist.addAtBeginning(0)
     linkedllist.addAtLast(6)
     linkedllist.addAtLast(7)
-    linkedllist.head = Solution().reverseBetween(linkedllist.head, 2, 7)
+    linkedllist.head = Solution().reverseBetween(linkedllist.head, 1, 7)
     linkedllist.printList()

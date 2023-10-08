@@ -6,16 +6,14 @@ class Solution:
         if len(s) == 1:
             return len(s) 
         
-        longest_substring: str = ''
-        for i in range(len(s)):
-            current_substring: str = ''
-            string_to_work_with = s[i::]
-            if len(string_to_work_with) < len(longest_substring):
-                break
-            for ch in string_to_work_with:
-                if ch in current_substring:
-                    break
-                current_substring = current_substring + ch
-            if len(current_substring) > len(longest_substring):
-                longest_substring = current_substring
-        return len(longest_substring)
+        max_substring_length = 0
+        current_substring = ''
+        for ch in s:
+            if ch in current_substring:
+                current_substring = current_substring[current_substring.index(ch)+1::]
+                print(current_substring, len(current_substring))
+            current_substring = current_substring + ch
+            if len(current_substring) > max_substring_length:
+                    max_substring_length = len(current_substring)
+        return max_substring_length
+ 

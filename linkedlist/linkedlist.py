@@ -24,6 +24,7 @@ class LinkedList:
     def addAtLast(self, data) -> None:
         if (self.head is None):
             self.head = Node(data)
+            return
         
         current = self.head
         while(current is not None):

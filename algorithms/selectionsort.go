@@ -9,17 +9,17 @@ type artistData struct {
 
 func selectionSort(artists *[]artistData) {
 	array_length := len(*artists)
-	for i := 0; i < array_length; i++ {
-		bigger_index := -1
-		for j := i; j < array_length; j++ {
-			if (*artists)[j].Plays > (*artists)[i].Plays {
-				bigger_index = j
+	for i := 0; i < (array_length - 1); i++ {
+		smaller_index := i
+		for j := i + 1; j < array_length; j++ {
+			if (*artists)[j].Plays < (*artists)[smaller_index].Plays {
+				smaller_index = j
 			}
-			if bigger_index >= 0 {
-				var bigger_play_count artistData = (*artists)[bigger_index]
-				(*artists)[bigger_index] = (*artists)[i]
-				(*artists)[i] = bigger_play_count
-			}
+		}
+		if smaller_index >= 0 {
+			var smaller_play_count artistData = (*artists)[smaller_index]
+			(*artists)[smaller_index] = (*artists)[i]
+			(*artists)[i] = smaller_play_count
 		}
 	}
 }

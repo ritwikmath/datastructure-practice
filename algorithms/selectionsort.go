@@ -16,7 +16,7 @@ func selectionSort(artists *[]artistData) {
 				smaller_index = j
 			}
 		}
-		if smaller_index >= 0 {
+		if smaller_index != i {
 			var smaller_play_count artistData = (*artists)[smaller_index]
 			(*artists)[smaller_index] = (*artists)[i]
 			(*artists)[i] = smaller_play_count
